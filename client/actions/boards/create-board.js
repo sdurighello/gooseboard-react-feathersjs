@@ -38,15 +38,15 @@ export default function createBoard(currentUser) {
       { _id: 10, position: 30, cellNumber: 10, players: [], borderwidth: "0px 1px 1px 0px", borderradius: "0px 0px 100px 0px" },
     ],
     players: [
-      { _id: 1, userId: 1,  name: "Eva", position: 1, lastRoll: 0},
-      { _id: 2, userId: 2, name: "Isa", position: 1, lastRoll: 0},
+      { _id: 1, userId: currentUser._id,  name: currentUser.name, position: 1, lastRoll: 0}
     ],
     owner: {
       _id: 1,
       userId: currentUser._id,
-      name: 'Eva',
+      name: currentUser.name,
     },
-    created_at: '2016-09-08'
+    created_at: '2016-09-08',
+    currentBoard: false
   }
   return {
     type: CREATE_BOARD,

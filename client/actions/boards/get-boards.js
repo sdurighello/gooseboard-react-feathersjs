@@ -46,7 +46,8 @@ export default function getBoards() {
       userId: 1,
       name: 'Eva',
     },
-    created_at: '2016-09-08'
+    created_at: '2016-09-08',
+    currentBoard: true
   }]
   return {
     type: GET_BOARDS,

@@ -6,124 +6,151 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Tile from '../components/Tile'
 import Player from '../components/Player'
 import WhoIsPlaying from '../components/WhoIsPlaying'
+// Actions
+import updateBoard from '../actions/boards/update-board'
 
 class Board extends React.Component {
 
   startGame(){
-  //   const { winner, whoIsPlaying, tiles, players } = this.state
-  //   // Put all the players in the first tile and remove players from all other tiles
-  //   const newTiles = tiles.map(function(tile){
-  //     if(tile.id === 1){
-  //       return {
-  //         id: tile.id,
-  //         name: tile.name,
-  //         image: tile.image,
-  //         borderwidth: tile.borderwidth,
-  //         borderradius: tile.borderradius,
-  //         players: tile.players.concat(players)
-  //       }
-  //     }
-  //     return {
-  //       id: tile.id,
-  //       name: tile.name,
-  //       image: tile.image,
-  //       borderwidth: tile.borderwidth,
-  //       borderradius: tile.borderradius,
-  //       players: []
-  //     }
-  //   })
-  //   // Set all players position to 1 and lastRoll to 0
-  //   const newPlayers = players.map(function(player){
-  //     return {
-  //       name: player.name,
-  //       position: 1,
-  //       lastRoll: 0
-  //     }
-  //   })
-  //   // Set the STATE
-  //   this.setState({
-  //     winner: null,
-  //     whoIsPlaying: newPlayers[0],
-  //     tiles: newTiles,
-  //     players: newPlayers
-  //   })
+    // Get props
+    const { selectedBoard, boards } = this.props
+    const selectedBoardFromId = boards.find(function(b){
+      return selectedBoard._id === b._id
+    })
+    const { winner, whoIsPlaying, tiles, players } = selectedBoardFromId
+    // Put all the players in the first tile and remove players from all other tiles
+    const newTiles = tiles.map(function(tile){
+      if(tile.cellNumber === 1){
+        return {
+          _id: tile._id,
+          cellNumber: tile.cellNumber,
+          image: tile.image,
+          borderwidth: tile.borderwidth,
+          borderradius: tile.borderradius,
+          players: tile.players.concat(players)
+        }
+      }
+      return {
+        _id: tile._id,
+        cellNumber: tile.cellNumber,
+        image: tile.image,
+        borderwidth: tile.borderwidth,
+        borderradius: tile.borderradius,
+        players: []
+      }
+    })
+    // Set all players position to 1 and lastRoll to 0
+    const newPlayers = players.map(function(p){
+      return {
+        _id: p._id,
+        userId: p.userId,
+        name: p.name,
+        position: 1,
+        lastRoll: 0
+      }
+    })
+    // Set the STATE
+    const payload = {
+      id: selectedBoardFromId._id,
+      data: {
+        winner: null,
+        whoIsPlaying: newPlayers[0],
+        tiles: newTiles,
+        players: newPlayers
+      },
+      query: {}
+    }
+    this.props.updateBoard(payload)
   }
 
   playTurn(player){
-  //   const {winner, whoIsPlaying, tiles, players} = this.state
-  //   const finishPosition = tiles.length
-  //   // Check that there is already a winner (game is closed)
-  //   if (winner) {return }
-  //   // Check that it's your turn
-  //   if(player.name !== whoIsPlaying.name){ return }
-  //   // Roll the dice
-  //   const diceResult = (1 + Math.floor(Math.random() * 6))
-  //   // Get new player's position
-  //   let newPosition = player.position + diceResult
-  //   if (newPosition > finishPosition ){
-  //     newPosition = finishPosition
-  //   }
-  //   // Change STATE
-  //     // Set new winner
-  //   let newWinner = null
-  //   if(newPosition === finishPosition){
-  //     newWinner = player
-  //   }
-  //     // Change player position and lastRoll
-  //   let newPlayers = players.map((p) => {
-  //     if (p.name === player.name) {
-  //       return {
-  //         name: p.name,
-  //         position: newPosition,
-  //         lastRoll: diceResult
-  //       }
-  //     }
-  //     return p
-  //   })
-  //     // Change tile.players array for target tile
-  //   let newTiles = tiles.map(function(tile){
-  //       // Remove player from existing tile
-  //     if(tile.id === player.position){
-  //       return {
-  //         id: tile.id,
-  //         name: tile.name,
-  //         image: tile.image,
-  //         borderwidth: tile.borderwidth,
-  //         borderradius: tile.borderradius,
-  //         players: tile.players.filter(function(p){
-  //           return p.name !== player.name
-  //         })
-  //       }
-  //     }
-  //       // Add player in target tile
-  //     if(tile.id === newPosition){
-  //       return {
-  //         id: tile.id,
-  //         name: tile.name,
-  //         borderwidth: tile.borderwidth,
-  //         borderradius: tile.borderradius,
-  //         players: tile.players.concat([player])
-  //       }
-  //     }
-  //     return tile
-  //   })
-  //     // Get next player
-  //   const nextPlayerIndex = players.indexOf(player) + 1
-  //   let nextPlayer = null
-  //   if(nextPlayerIndex <= (players.length - 1)){
-  //     nextPlayer = players.find(function(p, i){
-  //       return i === nextPlayerIndex
-  //     })
-  //   } else {
-  //     nextPlayer = players[0]
-  //   }
-  //   // Save all above states
-  //   this.setState({
-  //     winner: newWinner,
-  //     whoIsPlaying: nextPlayer,
-  //     tiles: newTiles,
-  //     players: newPlayers,
-  //   })
+    // Get props
+    const { selectedBoard, boards } = this.props
+    const selectedBoardFromId = boards.find(function(b){
+      return selectedBoard._id === b._id
+    })
+    const { winner, whoIsPlaying, tiles, players } = selectedBoardFromId
+    const finishPosition = tiles.length
+    // Check that there is already a winner (game is closed)
+    if (winner) {return }
+    // Check that it's your turn
+    if(player._id !== whoIsPlaying._id){ return }
+    // Roll the dice
+    const diceResult = (1 + Math.floor(Math.random() * 6))
+    // Get new player's position
+    let newPosition = player.position + diceResult
+    if (newPosition > finishPosition ){
+      newPosition = finishPosition
+    }
+    // Change STATE
+      // Set new winner
+    let newWinner = null
+    if(newPosition === finishPosition){
+      newWinner = player
+    }
+      // Change player position and lastRoll
+    let newPlayers = players.map((p) => {
+      if (p._id === player._id) {
+        return {
+          _id: p._id,
+          userId: p.userId,
+          name: p.name,
+          position: newPosition,
+          lastRoll: diceResult
+        }
+      }
+      return p
+    })
+      // Change tile.players array
+    let newTiles = tiles.map(function(tile){
+        // Remove player from existing tile
+      if(tile.cellNumber === player.position){
+        return {
+          _id: tile._id,
+          cellNumber: tile.cellNumber,
+          image: tile.image,
+          borderwidth: tile.borderwidth,
+          borderradius: tile.borderradius,
+          players: tile.players.filter(function(p){
+            return p._id !== player._id
+          })
+        }
+      }
+        // Add player in target tile
+      if(tile.cellNumber === newPosition){
+        return {
+          _id: tile._id,
+          cellNumber: tile.cellNumber,
+          image: tile.image,
+          borderwidth: tile.borderwidth,
+          borderradius: tile.borderradius,
+          players: tile.players.concat([player])
+        }
+      }
+      return tile
+    })
+      // Get next player
+    const nextPlayerIndex = players.indexOf(player) + 1
+    let nextPlayer = null
+    if(nextPlayerIndex <= (players.length - 1)){
+      nextPlayer = players.find(function(p, i){
+        return i === nextPlayerIndex
+      })
+    } else {
+      nextPlayer = players[0]
+    }
+    // Save all above states
+    const payload = {
+      id: selectedBoardFromId._id,
+      data: {
+        winner: newWinner,
+        whoIsPlaying: nextPlayer,
+        tiles: newTiles,
+        players: newPlayers,
+      },
+      query: {}
+    }
+    this.props.updateBoard(payload)
   }
 
   renderTile(tile, index) {
@@ -135,9 +162,17 @@ class Board extends React.Component {
   }
 
   renderPlayer(player, index) {
+    const { selectedBoard, boards } = this.props
+    const selectedBoardFromId = boards.find(function(b){
+      return selectedBoard._id === b._id
+    })
+    const { winner, whoIsPlaying, tiles, players } = selectedBoardFromId
+    const canPlay = (whoIsPlaying && (player._id === whoIsPlaying._id)) && !winner
     return (
       <Player key={ index }
-      player={ player} />
+      player={ player}
+      canPlay={ canPlay }
+      playTurn={ this.playTurn.bind(this) } />
     )
   }
 
@@ -150,8 +185,14 @@ class Board extends React.Component {
   }
 
   render() {
-    const selectedBoard = this.props.selectedBoard
-    const { winner, whoIsPlaying, tiles, players } = selectedBoard
+    // const selectedBoard = this.props.selectedBoard
+    // const { winner, whoIsPlaying, tiles, players } = selectedBoard
+    const { selectedBoard, boards } = this.props
+    const selectedBoardFromId = boards.find(function(b){
+      return selectedBoard._id === b._id
+    })
+    const { winner, whoIsPlaying, tiles, players } = selectedBoardFromId
+
     // if(selectedBoard){
     //   tiles.sort(function (a, b) {
     //     if (a.position > b.position) {
@@ -166,9 +207,8 @@ class Board extends React.Component {
     // }
     return (
       <div>
-        <h1>Gooseboard</h1>
         <RaisedButton
-        onClick={this.startGame()}
+        onClick={this.startGame.bind(this)}
         label="Start Game"
         backgroundColor="#f49905"
         />
@@ -178,32 +218,41 @@ class Board extends React.Component {
             <tr>
               <th>Name</th>
               <th>Last roll</th>
+              <th> </th>
             </tr>
           </thead>
           <tbody>
+            { winner ?
+              <tr>
+                <td colSpan="2">
+                  <h3>
+                    Winner: { winner.name } !!!
+                  </h3>
+                </td>
+              </tr> : null }
             { players.map(this.renderPlayer.bind(this)) }
           </tbody>
         </table>
-        <br/>
+        <br />
         <div>{ whoIsPlaying && !winner ? this.renderWhoIsPlaying(whoIsPlaying) : null}</div>
-        <div style={{minWidth: '2000px'}}>
-          { tiles.slice(0,6).map(this.renderTile.bind(this)) }
+        <br />
+        <div>
+          <div style={{minWidth: '2000px'}}>
+            { tiles.slice(0,6).map(this.renderTile.bind(this)) }
+          </div>
+          <div style={{minWidth: '2000px'}}>
+            { tiles.slice(6,12).map(this.renderTile.bind(this)) }
+          </div>
+          <div style={{minWidth: '2000px'}}>
+            { tiles.slice(12,18).map(this.renderTile.bind(this)) }
+          </div>
+          <div style={{minWidth: '2000px'}}>
+            { tiles.slice(18,24).map(this.renderTile.bind(this)) }
+          </div>
+          <div style={{minWidth: '2000px'}}>
+            { tiles.slice(24,30).map(this.renderTile.bind(this)) }
+          </div>
         </div>
-        <div style={{minWidth: '2000px'}}>
-          { tiles.slice(6,12).map(this.renderTile.bind(this)) }
-        </div>
-        <div style={{minWidth: '2000px'}}>
-          { tiles.slice(12,18).map(this.renderTile.bind(this)) }
-        </div>
-        <div style={{minWidth: '2000px'}}>
-          { tiles.slice(18,24).map(this.renderTile.bind(this)) }
-        </div>
-        <div style={{minWidth: '2000px'}}>
-          { tiles.slice(24,30).map(this.renderTile.bind(this)) }
-        </div>
-        <h3>
-          { winner ? <div>Winner: {winner.name} !!!</div> : null }
-        </h3>
       </div>
     )
   }
@@ -223,4 +272,4 @@ Board.propTypes = {
 
 }
 
-export default connect(mapStateToProps, { })(Board)
+export default connect(mapStateToProps, { updateBoard })(Board)
