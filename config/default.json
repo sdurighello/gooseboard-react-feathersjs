@@ -1,0 +1,13 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "mongodb": "mongodb://localhost:27017/Gooseboard2",
+  "public": "../client/",
+  "auth": {
+    "token": {
+      "secret": "cdnFQSvsERwWU3yNrlrxPlWfJM4+NmA+A4I2jWUPonefFgVW5at8Jm6N79M23xzEWrzAl41Z/6/JQ3mxF45syg=="
+    },
+    "local": {},
+    "successRedirect": "/games"
+  }
+}
