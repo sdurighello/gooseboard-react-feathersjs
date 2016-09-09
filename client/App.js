@@ -1,9 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+// Material-UI
+import FlatButton from 'material-ui/FlatButton'
+// Authorization
 import signOut from './actions/sign-out-user'
 import SignInOrUp from './containers/SignInOrUp'
+// Loaders
 import Loader from './components/Loader'
-import FlatButton from 'material-ui/FlatButton'
+// Containers
+import Lobby from './containers/Lobby'
 
 class App extends Component {
   signOut() {
@@ -18,12 +23,11 @@ class App extends Component {
         { loading ? <Loader/> : null }
         { authenticated ?
           (<div>
-            <h1>Hi, { currentUser.name }!</h1>
-            <p>
-              <FlatButton
-                onClick={ this.signOut.bind(this) }
-                label="Sign out"/>
-            </p>
+            <span>Hi, { currentUser.name }!</span>
+            <FlatButton
+              onClick={ this.signOut.bind(this) }
+              label="Sign out"/>
+            <Lobby />
           </div>) :
             <SignInOrUp/> }
       </div>
