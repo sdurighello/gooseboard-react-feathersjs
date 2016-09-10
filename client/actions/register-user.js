@@ -1,4 +1,4 @@
-import Api from '../middleware/api'
+import api from '../middleware/api'
 import appLoading from './app-loading'
 import appDoneLoading from './app-done-loading'
 import authenticateUser from './authenticate-user'
@@ -12,7 +12,6 @@ export default function registerUser(user) {
     dispatch(appLoading())
 
     // Here's the new user data, create a User with it
-    const api = new Api()
     api.service('users').create(user)
       .then((response) => {
         // We're done creating the User, now authenticate
