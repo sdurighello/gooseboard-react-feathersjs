@@ -10,24 +10,21 @@ import BoardItem from '../components/BoardItem'
 // Containers
 import Board from './Board'
 // Actions
-import getBoards from '../actions/boards/get-boards'
-import createBoard from '../actions/boards/create-board'
-import updateBoard from '../actions/boards/update-board'
-import joinBoard from '../actions/boards/join-board'
+import boardModel from '../models/board-model'
+import setupBoards from '../actions/boards/setup-boards'
 import selectBoard from '../actions/boards/select-board'
-
 
 class Lobby extends React.Component {
 
   componentDidMount() {
-    this.props.getBoards()
+    this.props.setupBoards()
   }
 
   joinBoard(board, user){
     // Get props
     const { players } = board
     // Only not started and not completed games can be joined
-    if(board.winner || board.whoIsPlaying){ return }
+    if(board.winner._id || board.whoIsPlaying._id){ return }
     // Add user to board's players
     const newPlayers = players.concat(
       [{
@@ -40,13 +37,9 @@ class Lobby extends React.Component {
     )
     // Set the STATE
     const payload = {
-      id: board._id,
-      data: {
-        players: newPlayers
-      },
-      query: {}
+      players: newPlayers
     }
-    this.props.updateBoard(payload)
+    boardModel.save(board, payload)
   }
 
   selectBoard(board){
@@ -54,8 +47,7 @@ class Lobby extends React.Component {
   }
 
   createGame() {
-    const { currentUser } = this.props
-    this.props.createBoard(currentUser)
+    boardModel.create({})
   }
 
   // --- Renders ---
@@ -129,4 +121,4 @@ Lobby.propTypes = {
 
 }
 
-export default connect(mapStateToProps, { getBoards, createBoard, updateBoard, selectBoard })(Lobby)
+export default connect(mapStateToProps, { setupBoards, selectBoard })(Lobby)

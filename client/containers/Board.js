@@ -6,7 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Tile from '../components/Tile'
 import Player from '../components/Player'
 // Actions
-import updateBoard from '../actions/boards/update-board'
+import boardModel from '../models/board-model'
 import setFormErrors from '../actions/set-form-errors'
 import resetFormErrors from '../actions/reset-form-errors'
 
@@ -58,16 +58,12 @@ class Board extends React.Component {
     })
     // Set the STATE
     const payload = {
-      id: selectedBoardFromId._id,
-      data: {
-        winner: null,
-        whoIsPlaying: newPlayers[0],
-        tiles: newTiles,
-        players: newPlayers
-      },
-      query: {}
+      winner: null,
+      whoIsPlaying: newPlayers[0],
+      tiles: newTiles,
+      players: newPlayers
     }
-    this.props.updateBoard(payload)
+    boardModel.save(selectedBoardFromId, payload)
   }
 
   playTurn(player){
@@ -79,7 +75,7 @@ class Board extends React.Component {
     const { winner, whoIsPlaying, tiles, players } = selectedBoardFromId
     const finishPosition = tiles.length
     // Check that there is already a winner (game is closed)
-    if (winner) {return }
+    if (winner._id) {return }
     // Check that it's your turn
     if(player._id !== whoIsPlaying._id){ return }
     // Roll the dice
@@ -173,16 +169,12 @@ class Board extends React.Component {
     }
     // Save all above states
     const payload = {
-      id: selectedBoardFromId._id,
-      data: {
-        winner: newWinner,
-        whoIsPlaying: nextPlayer,
-        tiles: newTiles,
-        players: newPlayers,
-      },
-      query: {}
+      winner: newWinner,
+      whoIsPlaying: nextPlayer,
+      tiles: newTiles,
+      players: newPlayers
     }
-    this.props.updateBoard(payload)
+    boardModel.save(selectedBoardFromId, payload)
   }
 
   renderTile(tile, index) {
@@ -199,7 +191,7 @@ class Board extends React.Component {
       return selectedBoard._id === b._id
     })
     const { winner, whoIsPlaying, tiles, players } = selectedBoardFromId
-    const canPlay = (whoIsPlaying && (player._id === whoIsPlaying._id)) && !winner
+    const canPlay = (whoIsPlaying && (player._id === whoIsPlaying._id)) && !winner._id
     return (
       <Player key={ index }
       player={ player}
@@ -251,7 +243,7 @@ class Board extends React.Component {
             </table>
           </div>
           <div style={{margin: '20px'}}>
-            { winner ?
+            { winner._id ?
               <h1 style={{color: 'green'}}>
                 Winner: { winner.name } ! Let's party !!!
               </h1> : null
@@ -300,4 +292,4 @@ Board.propTypes = {
 
 }
 
-export default connect(mapStateToProps, { updateBoard, setFormErrors, resetFormErrors })(Board)
+export default connect(mapStateToProps, { setFormErrors, resetFormErrors })(Board)
