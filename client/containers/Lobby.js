@@ -83,7 +83,14 @@ class Lobby extends React.Component {
 
   render() {
     const { currentUser, users, boards, selectedBoard } = this.props
-
+    const boardstyle = {
+      flex: '2',
+      backgroundImage: "url('http://www.walldevil.com/wallpapers/a90/summer-butterfly-lake-water-tree-goose-dandelion-rabbit-boat.jpg')",
+      backgroundSize: 'cover',
+      height: '1000px',
+      border: '1px solid black',
+      paddingLeft: '100px',
+    };
     return (
       <div style={{display: 'flex'}}>
         <div style={{flex: '1'}}>
@@ -99,9 +106,8 @@ class Lobby extends React.Component {
             { boards.map(this.renderBoardItem.bind(this)) }
           </ul>
         </div>
-        <br/>
-        <div style={{flex: '2'}}>
-        <h1>SELECTED BOARD</h1>
+        <div style={boardstyle}>
+        <h1>GOOSEBOARD</h1>
           { selectedBoard._id ? <Board /> : 'No board selected' }
         </div>
       </div>

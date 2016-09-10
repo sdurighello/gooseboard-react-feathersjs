@@ -13,7 +13,7 @@ class Tile extends React.Component {
       fontsize: 40,
       backgroundImage: 'url(' + tile.image + ')',
       backgroundRepeat: 'no-repeat',
-      backgroundColor: '#fffce5',
+      backgroundColor: 'rgba(255, 252, 219, 0.8)',
       backgroundSize: 'contain',
       textAlign: 'center',
       borderStyle: 'solid',

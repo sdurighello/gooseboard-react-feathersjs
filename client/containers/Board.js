@@ -236,10 +236,10 @@ class Board extends React.Component {
         label="Start Game"
         backgroundColor="#f49905"
         />
-        <hr/>
         <div style={{display: 'flex'}}>
           <div>
-            <table style={{border: '1px solid black'}}>
+          <br />
+            <table style={{border: '1px solid black', backgroundColor: '#fffce5' }}>
               <thead>
                 <tr>
                   <th colSpan='2'>Player</th>
