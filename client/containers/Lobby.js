@@ -99,7 +99,8 @@ class Lobby extends React.Component {
         </Paper>
         <Paper style={boardstyle}>
         <h1>GOOSEBOARD</h1>
-          { selectedBoard._id ? <Board /> : 'No board selected' }
+        { selectedBoard._id ? <h3>Board created by { selectedBoard.owner.name } on { new Date(selectedBoard.createdAt).toUTCString() }</h3> : null }
+        { selectedBoard._id ? <Board /> : 'No board selected' }
         </Paper>
       </div>
     )

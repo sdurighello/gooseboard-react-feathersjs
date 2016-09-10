@@ -17,14 +17,16 @@ class Board extends React.Component {
   }
 
   startGame(){
-    // Send game started message
-    this.props.setFormErrors({boardMsg: 'Game started!'})
     // Get props
-    const { selectedBoard, boards } = this.props
+    const { selectedBoard, boards, currentUser } = this.props
     const selectedBoardFromId = boards.find(function(b){
       return selectedBoard._id === b._id
     })
-    const { winner, whoIsPlaying, tiles, players } = selectedBoardFromId
+    const { winner, whoIsPlaying, tiles, players, owner } = selectedBoardFromId
+    // Don't start if you're not the owner
+    if(currentUser._id !== owner.userId){ return }
+    // Send game started message
+    this.props.setFormErrors({boardMsg: 'Game started!'})
     // Put all the players in the first tile and remove players from all other tiles
     const newTiles = tiles.map(function(tile){
       if(tile.cellNumber === 1){
@@ -68,12 +70,14 @@ class Board extends React.Component {
 
   playTurn(player){
     // Get props
-    const { selectedBoard, boards } = this.props
+    const { selectedBoard, boards, currentUser } = this.props
     const selectedBoardFromId = boards.find(function(b){
       return selectedBoard._id === b._id
     })
     const { winner, whoIsPlaying, tiles, players } = selectedBoardFromId
     const finishPosition = tiles.length
+    // Check that the user is the player
+    if(currentUser._id !== player.userId){ return }
     // Check that there is already a winner (game is closed)
     if (winner && winner.userId) {return }
     // Check that it's your turn
@@ -217,7 +221,7 @@ class Board extends React.Component {
         <div style={{display: 'flex'}}>
           <div>
           <br />
-            <table style={{border: '1px solid black', backgroundColor: 'rgba(255, 252, 219, 0.8)', padding: '10px' }}>
+            <table style={{border: '1px solid black', backgroundColor: 'rgba(255, 252, 219, 0.8)', padding: '10px', minWidth: '200px' }}>
               <thead>
                 <tr>
                   <th colSpan='2'>Player</th>
