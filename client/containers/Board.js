@@ -202,26 +202,11 @@ class Board extends React.Component {
   }
 
   render() {
-    // const selectedBoard = this.props.selectedBoard
-    // const { winner, whoIsPlaying, tiles, players } = selectedBoard
     const { selectedBoard, boards, formErrors } = this.props
     const selectedBoardFromId = boards.find(function(b){
       return selectedBoard._id === b._id
     })
     const { winner, whoIsPlaying, tiles, players } = selectedBoardFromId
-
-    // if(selectedBoard){
-    //   tiles.sort(function (a, b) {
-    //     if (a.position > b.position) {
-    //       return 1
-    //     }
-    //     if (a.position < b.position) {
-    //       return -1
-    //     }
-    //     // a must be equal to b
-    //     return 0
-    //   })
-    // }
     return (
       <div>
         <RaisedButton
