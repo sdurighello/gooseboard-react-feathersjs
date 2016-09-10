@@ -1,4 +1,5 @@
 'use strict';
+const board = require('./board');
 const game = require('./game');
 const authentication = require('./authentication');
 const user = require('./user');
@@ -12,4 +13,5 @@ module.exports = function() {
   app.configure(authentication);
   app.configure(user);
   app.configure(game);
+  app.configure(board);
 };

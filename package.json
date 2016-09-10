@@ -34,6 +34,7 @@
     "feathers-mongoose": "^3.5.2",
     "feathers-rest": "^1.4.4",
     "feathers-socketio": "^1.4.1",
+    "feathersjs-redux-model": "github:codaisseur/feathersjs-redux-model",
     "material-ui": "^0.15.4",
     "mongoose": "^4.6.0",
     "passport": "^0.3.2",

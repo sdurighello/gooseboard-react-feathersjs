@@ -35,4 +35,6 @@ class API {
   }
 }
 
-export default API
+const Api = new API()
+
+export default Api
