@@ -17,9 +17,9 @@ class App extends Component {
 
   render() {
     const { loading, authenticated, currentUser } = this.props
-
+    const style = { fontFamily: 'Prompt' }
     return(
-      <div>
+      <div style={style}>
         { loading ? <Loader/> : null }
         { authenticated ?
           (<div>

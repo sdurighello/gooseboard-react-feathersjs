@@ -12,7 +12,6 @@ class Player extends React.Component {
     return (
       <tr>
         <td>{ player.name } </td>
-        <td>{ player.lastRoll }</td>
         <td>
           <RaisedButton label='Roll dice' onClick={ this.playTurn.bind(this) } disabled={ !canPlay } secondary />
         </td>

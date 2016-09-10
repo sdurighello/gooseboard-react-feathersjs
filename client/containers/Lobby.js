@@ -5,7 +5,6 @@ import RaisedButton from 'material-ui/RaisedButton'
 // Components
 import Tile from '../components/Tile'
 import Player from '../components/Player'
-import WhoIsPlaying from '../components/WhoIsPlaying'
 import UserItem from '../components/UserItem'
 import BoardItem from '../components/BoardItem'
 // Containers
