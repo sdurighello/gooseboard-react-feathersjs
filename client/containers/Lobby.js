@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 // Material-UI
 import RaisedButton from 'material-ui/RaisedButton'
+
+import model from '../models/board-model'
+
 // Components
 import Tile from '../components/Tile'
 import Player from '../components/Player'
@@ -10,7 +13,7 @@ import BoardItem from '../components/BoardItem'
 // Containers
 import Board from './Board'
 // Actions
-import getBoards from '../actions/boards/get-boards'
+import setupBoards from '../actions/boards/setup-boards'
 import createBoard from '../actions/boards/create-board'
 import updateBoard from '../actions/boards/update-board'
 import joinBoard from '../actions/boards/join-board'
@@ -20,7 +23,7 @@ import selectBoard from '../actions/boards/select-board'
 class Lobby extends React.Component {
 
   componentDidMount() {
-    this.props.getBoards()
+    this.props.setupBoards()
   }
 
   joinBoard(board, user){
@@ -54,8 +57,7 @@ class Lobby extends React.Component {
   }
 
   createGame() {
-    const { currentUser } = this.props
-    this.props.createBoard(currentUser)
+    model.create({})
   }
 
   // --- Renders ---
@@ -123,4 +125,4 @@ Lobby.propTypes = {
 
 }
 
-export default connect(mapStateToProps, { getBoards, createBoard, updateBoard, selectBoard })(Lobby)
+export default connect(mapStateToProps, { setupBoards, createBoard, updateBoard, selectBoard })(Lobby)

@@ -1,5 +1,4 @@
-import BaseModel from 'feathersjs-redux-model/build/models/base-model'
-// import BaseModel from './base-model'
+import BaseModel from './base-model'
 
 class BoardModel extends BaseModel {
   flipCard(board, index, currentPlayer) {
@@ -92,6 +91,6 @@ class BoardModel extends BaseModel {
   }
 }
 
-const BoardModel = new BoardModel()
+const boardModel = new BoardModel()
 
-export default BoardModel
+export default boardModel
