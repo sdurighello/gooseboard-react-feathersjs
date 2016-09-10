@@ -23,7 +23,7 @@ class App extends Component {
         { loading ? <Loader/> : null }
         { authenticated ?
           (<div>
-            <span>Hi, { currentUser.name }!</span>
+            <span style={{backgroundColor: 'pink'}}>Hi, { currentUser.name }!</span>
             <FlatButton
               onClick={ this.signOut.bind(this) }
               label="Sign out"/>
