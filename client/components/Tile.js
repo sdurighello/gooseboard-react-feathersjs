@@ -24,10 +24,11 @@ class Tile extends React.Component {
     };
     const player = {
       color:"#ea0000",
-      border: '1px solid blue',
-      borderRadius: '100%',
-      padding: '2px',
-      backgroundColor: 'lightblue',
+      padding: '15px',
+      margin: '-25px',
+      backgroundImage: 'url("http://res.cloudinary.com/angela2389/image/upload/v1473512614/Goose9_svjokr.png")',
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat'
     }
     return (
       <Paper style={style}>

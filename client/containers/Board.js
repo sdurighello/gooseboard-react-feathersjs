@@ -88,27 +88,27 @@ class Board extends React.Component {
     let resultPosition = player.position + diceResult // interim variable for checks
     let newPosition = player.position + diceResult
     // Set player played turn message
-    this.props.setFormErrors({boardMsg: `${player.name} rolled ${diceResult} and went to ${resultPosition}`})
+    this.props.setFormErrors({boardMsg: `${player.name} rolled ${diceResult} and went to tile ${resultPosition}`})
       // If POSITION 5: superman! fly 3 ahead
     if (resultPosition === 5 ){
       newPosition = 8
-      this.props.setFormErrors({boardMsg: `${player.name} rolled ${diceResult} and went to ${resultPosition}. Superman just used his powers! Fly 3 steps ahead to ${newPosition}!`})
+      this.props.setFormErrors({boardMsg: `${player.name} rolled ${diceResult} and went to tile ${resultPosition}. Superman just used his powers! Fly 3 steps ahead to ${newPosition}!`})
     }
       // If POSITION 13: banana! 3 steps back
     if (resultPosition === 13 ){
       newPosition = 10
-      this.props.setFormErrors({boardMsg: `${player.name} rolled ${diceResult} and went to ${resultPosition}. Ouch! Who left that banana there?! Slip back 3 steps to ${newPosition}!`})
+      this.props.setFormErrors({boardMsg: `${player.name} rolled ${diceResult} and went to tile ${resultPosition}. Ouch! Who left that banana there?! Slip back 3 steps to ${newPosition}!`})
     }
       // If POSITION 27: party too much last night? need rest? go back to start!
     if (resultPosition === 27 ){
       newPosition = 1
-      this.props.setFormErrors({boardMsg: `${player.name} rolled ${diceResult} and went to ${resultPosition}. Partied too much last night? need rest? go back to start!`})
+      this.props.setFormErrors({boardMsg: `${player.name} rolled ${diceResult} and went to tile ${resultPosition}. Partied too much last night? need rest? go back to start!`})
     }
       // If POSITION 30: beyond finish, step back by the difference
     if (resultPosition > finishPosition ){
       let stepsBack = resultPosition - finishPosition
       newPosition = finishPosition - stepsBack
-      this.props.setFormErrors({boardMsg: `${player.name} rolled ${diceResult} and went to ${resultPosition}. Oops, that's too far, you need to take ${stepsBack} steps back to ${newPosition}!`})
+      this.props.setFormErrors({boardMsg: `${player.name} rolled ${diceResult} and went to tile ${resultPosition}. Oops, that's too far, you need to take ${stepsBack} steps back to ${newPosition}!`})
     }
     // Change STATE
       // Set new winner
@@ -239,7 +239,7 @@ class Board extends React.Component {
         <div style={{display: 'flex'}}>
           <div>
           <br />
-            <table style={{border: '1px solid black', backgroundColor: '#fffce5' }}>
+            <table style={{border: '1px solid black', backgroundColor: 'rgba(255, 252, 219, 0.8)', padding: '10px' }}>
               <thead>
                 <tr>
                   <th colSpan='2'>Player</th>

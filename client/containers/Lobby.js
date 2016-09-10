@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 // Material-UI
 import RaisedButton from 'material-ui/RaisedButton'
+import Paper from 'material-ui/Paper'
+
 // Components
 import Tile from '../components/Tile'
 import Player from '../components/Player'
@@ -93,7 +95,7 @@ class Lobby extends React.Component {
     };
     return (
       <div style={{display: 'flex'}}>
-        <div style={{flex: '1'}}>
+        <Paper style={{flex: '1', border: '1px solid black', paddingLeft: '5px', marginRight: '2px'}}>
         <h1>LOBBY</h1>
           <h3>List of all users with boards won</h3>
           <ul>
@@ -105,11 +107,11 @@ class Lobby extends React.Component {
           <ul>
             { boards.map(this.renderBoardItem.bind(this)) }
           </ul>
-        </div>
-        <div style={boardstyle}>
+        </Paper>
+        <Paper style={boardstyle}>
         <h1>GOOSEBOARD</h1>
           { selectedBoard._id ? <Board /> : 'No board selected' }
-        </div>
+        </Paper>
       </div>
     )
   }
