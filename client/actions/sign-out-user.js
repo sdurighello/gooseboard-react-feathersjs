@@ -1,4 +1,4 @@
-import Api from '../middleware/api'
+import api from '../middleware/api'
 import appLoading from './app-loading'
 import appDoneLoading from './app-done-loading'
 import userSignedOut from './user-signed-out'
@@ -9,7 +9,6 @@ export default function signOutUser() {
     dispatch(appLoading())
 
     // Here's the new user data, create a User with it
-    const api = new Api()
     api.signOut().then(() => {
       dispatch(userSignedOut())
       dispatch(appDoneLoading())
