@@ -75,9 +75,9 @@ class Board extends React.Component {
     const { winner, whoIsPlaying, tiles, players } = selectedBoardFromId
     const finishPosition = tiles.length
     // Check that there is already a winner (game is closed)
-    if (winner._id) {return }
+    if (winner && winner._id) {return }
     // Check that it's your turn
-    if(player._id !== whoIsPlaying._id){ return }
+    if(whoIsPlaying && (player._id !== whoIsPlaying._id)){ return }
     // Roll the dice
     const diceResult = (1 + Math.floor(Math.random() * 6))
     // Get new player's position
@@ -191,7 +191,7 @@ class Board extends React.Component {
       return selectedBoard._id === b._id
     })
     const { winner, whoIsPlaying, tiles, players } = selectedBoardFromId
-    const canPlay = (whoIsPlaying && (player._id === whoIsPlaying._id)) && !winner._id
+    const canPlay = (whoIsPlaying && (player._id === whoIsPlaying._id)) && !(winner && winner._id)
     return (
       <Player key={ index }
       player={ player}
@@ -243,7 +243,7 @@ class Board extends React.Component {
             </table>
           </div>
           <div style={{margin: '20px'}}>
-            { winner._id ?
+            { (winner && winner._id) ?
               <h1 style={{color: 'green'}}>
                 Winner: { winner.name } ! Let's party !!!
               </h1> : null
