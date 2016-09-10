@@ -24,7 +24,7 @@ class Lobby extends React.Component {
     // Get props
     const { players } = board
     // Only not started and not completed games can be joined
-    if((board.winner && board.winner._id) || (board.whoIsPlaying && board.whoIsPlaying._id)){ return }
+    if((board.winner && board.winner.userId) || (board.whoIsPlaying && board.whoIsPlaying.userId)){ return }
     // Add user to board's players
     const newPlayers = players.concat(
       [{

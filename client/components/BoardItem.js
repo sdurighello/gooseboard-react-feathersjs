@@ -20,9 +20,9 @@ class BoardItem extends React.Component {
     const hasJoined = board.players.some(function(p){
       return currentUser._id === p.userId
     })
-    const isOpen = !(board.whoIsPlaying && board.whoIsPlaying._id)
-    const isRunning = (board.whoIsPlaying && board.whoIsPlaying._id) && !(board.winner && board.winner._id)
-    const isClosed = (board.winner && board.winner._id)
+    const isOpen = !(board.whoIsPlaying && board.whoIsPlaying.userId)
+    const isRunning = (board.whoIsPlaying && board.whoIsPlaying.userId) && !(board.winner && board.winner.userId)
+    const isClosed = (board.winner && board.winner.userId)
     const canJoin = !hasJoined && isOpen
     const canViewBoard = selectedBoard._id !== board._id
     return (
