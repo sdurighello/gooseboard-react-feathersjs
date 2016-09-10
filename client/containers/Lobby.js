@@ -88,13 +88,10 @@ class Lobby extends React.Component {
     return (
       <div style={{display: 'flex'}}>
         <Paper style={{flex: '1', border: '1px solid black', paddingLeft: '5px', marginRight: '2px'}}>
-        <h1>LOBBY</h1>
-          <h3>List of all users with boards won</h3>
           <ul>
             {/* { users.map(this.renderUserItem.bind(this)) } */}
           </ul>
           <br/>
-          <h3>List of boards with 'join' and 'view' button</h3>
           <RaisedButton label='New game' onClick={ this.createGame.bind(this) } primary />
           <ul>
             { boards.map(this.renderBoardItem.bind(this)) }
@@ -102,7 +99,8 @@ class Lobby extends React.Component {
         </Paper>
         <Paper style={boardstyle}>
         <h1>GOOSEBOARD</h1>
-          { selectedBoard._id ? <Board /> : 'No board selected' }
+        { selectedBoard._id ? <h3>Board created by { selectedBoard.owner.name } on { new Date(selectedBoard.createdAt).toUTCString() }</h3> : null }
+        { selectedBoard._id ? <Board /> : 'No board selected' }
         </Paper>
       </div>
     )
