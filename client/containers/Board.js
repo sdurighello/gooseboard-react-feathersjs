@@ -264,19 +264,19 @@ class Board extends React.Component {
 
         <br />
         <div>
-          <div style={{minWidth: '2000px'}}>
+          <div style={{minWidth: '1000px'}}>
             { tiles.slice(0,6).map(this.renderTile.bind(this)) }
           </div>
-          <div style={{minWidth: '2000px'}}>
+          <div style={{minWidth: '1000px'}}>
             { tiles.slice(6,12).map(this.renderTile.bind(this)) }
           </div>
-          <div style={{minWidth: '2000px'}}>
+          <div style={{minWidth: '1000px'}}>
             { tiles.slice(12,18).map(this.renderTile.bind(this)) }
           </div>
-          <div style={{minWidth: '2000px'}}>
+          <div style={{minWidth: '1000px'}}>
             { tiles.slice(18,24).map(this.renderTile.bind(this)) }
           </div>
-          <div style={{minWidth: '2000px'}}>
+          <div style={{minWidth: '1000px'}}>
             { tiles.slice(24,30).map(this.renderTile.bind(this)) }
           </div>
         </div>

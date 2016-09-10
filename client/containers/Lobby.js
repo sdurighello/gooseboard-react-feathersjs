@@ -85,9 +85,9 @@ class Lobby extends React.Component {
     const { currentUser, users, boards, selectedBoard } = this.props
 
     return (
-      <div>
+      <div style={{display: 'flex'}}>
+        <div style={{flex: '1'}}>
         <h1>LOBBY</h1>
-        <div>
           <h3>List of all users with boards won</h3>
           <ul>
             {/* { users.map(this.renderUserItem.bind(this)) } */}
@@ -100,8 +100,8 @@ class Lobby extends React.Component {
           </ul>
         </div>
         <br/>
+        <div style={{flex: '2'}}>
         <h1>SELECTED BOARD</h1>
-        <div>
           { selectedBoard._id ? <Board /> : 'No board selected' }
         </div>
       </div>
