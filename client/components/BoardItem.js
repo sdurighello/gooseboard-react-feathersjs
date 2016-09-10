@@ -33,7 +33,7 @@ class BoardItem extends React.Component {
     return (
       <Paper style={{marginRight: '10px', marginLeft: '-30px', padding: '5px'}}>
         Board created by { board.owner.name } on { this.toDateString(board.createdAt) } <br />
-        { isOpen ? <span>OPEN &nbsp; &nbsp; &nbsp;</span> : isRunning ? <span>RUNNING &nbsp; &nbsp; &nbsp;</span> : isClosed ? <span>CLOSED &nbsp; &nbsp; &nbsp;</span> : null }
+        { isOpen ? <span>OPEN &nbsp; &nbsp; &nbsp;</span> : isRunning ? <span>RUNNING </span> : isClosed ? <span>CLOSED &nbsp; &nbsp; &nbsp;</span> : null }
         { canViewBoard ? <span><FlatButton label='View' onClick={ this.selectBoard.bind(this) } secondary /></span> : <span>SHOWING</span>}
         { canJoin ? <FlatButton label='Join' onClick={ this.joinBoard.bind(this) } secondary /> : hasJoined ? <span>&nbsp; &nbsp; &nbsp; JOINED</span> : null }
       </Paper>
