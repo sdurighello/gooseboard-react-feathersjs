@@ -1,5 +1,7 @@
 import React from 'react'
 import FlatButton from 'material-ui/FlatButton'
+import Paper from 'material-ui/Paper'
+
 
 class BoardItem extends React.Component {
 
@@ -24,12 +26,12 @@ class BoardItem extends React.Component {
     const canJoin = !hasJoined && isOpen
     const canViewBoard = selectedBoard._id !== board._id
     return (
-      <li>
-        <span>Board created by { board.owner.name } on { board.created_at } </span>
+      <Paper style={{marginRight: '10px', marginLeft: '-30px', padding: '5px'}}>
+        Board created by { board.owner.name } on { board.created_at } <br />
         { isOpen ? <span>OPEN  </span> : isRunning ? <span>RUNNING  </span> : isClosed ? <span>CLOSED </span> : null }
         { canViewBoard ? <span><FlatButton label='View' onClick={ this.selectBoard.bind(this) } secondary /></span> : <span>SHOWING </span>}
         { canJoin ? <FlatButton label='Join' onClick={ this.joinBoard.bind(this) } secondary /> : hasJoined ? <span>JOINED </span> : null }
-      </li>
+      </Paper>
     )
   }
 }
