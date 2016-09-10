@@ -84,6 +84,7 @@ class Board extends React.Component {
     if(player._id !== whoIsPlaying._id){ return }
     // Roll the dice
     const diceResult = (1 + Math.floor(Math.random() * 6))
+
     // Get new player's position
     let resultPosition = player.position + diceResult // interim variable for checks
     let newPosition = player.position + diceResult
