@@ -48,7 +48,8 @@
     "redux-thunk": "^2.1.0",
     "serve-favicon": "^2.3.0",
     "socket.io-client": "^1.4.8",
-    "winston": "^2.2.0"
+    "winston": "^2.2.0",
+    "webpack": "^1.13.2"
   },
   "devDependencies": {
     "babel-core": "^6.14.0",
