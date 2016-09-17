@@ -1,54 +1,10 @@
-# MemoryGame
-
-> Multiplayer Memory Game with React and FeathersJS.
+> Multiplayer board-game with React, Redux and [FeathersJS](http://feathersjs.com). Persistency is provided through MongoDB and real-rime communications through Websockets.
 
 ## About
 
-This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
+Once logged in you can create a board that others can join or you can join somebody else's board...or you can just start playing by yourself on your own board if it's 2am and you're bored.
 
-## Getting Started
-
-Getting up and running is as easy as 1, 2, 3.
-
-1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
-2. Install your dependencies
-    
-    ```
-    cd path/to/MemoryGame; npm install
-    ```
-
-3. Start your app
-    
-    ```
-    npm start
-    ```
-
-## Testing
-
-Simply run `npm test` and all your tests in the `test/` directory will be run.
-
-## Scaffolding
-
-Feathers has a powerful command line interface. Here are a few things it can do:
-
-```
-$ npm install -g feathers-cli             # Install Feathers CLI
-
-$ feathers generate service               # Generate a new Service
-$ feathers generate hook                  # Generate a new Hook
-$ feathers generate model                 # Generate a new Model
-$ feathers help                           # Show all commands
-```
-
-## Help
-
-For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
-
-## Changelog
-
-__0.1.0__
-
-- Initial release
+The board has a path of numbered cells from 1 to 30. Players take turns to throw the dice and moves on the board based on the throw result. Who gets to the end first win....but watch out for the traps along the way and don't overshoot at the end!
 
 ## License
 
