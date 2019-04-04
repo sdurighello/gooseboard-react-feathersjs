@@ -1,5 +1,7 @@
 > Multiplayer board-game with React, Redux and [FeathersJS](http://feathersjs.com). Persistency is provided through MongoDB and real-rime communications through Websockets.
 
+Live at https://gooseboard-react-feathersjs.herokuapp.com
+
 ## About
 
 Once logged in you can create a board that others can join or you can join somebody else's board...or you can just start playing by yourself on your own board if it's 2am and you're bored.
